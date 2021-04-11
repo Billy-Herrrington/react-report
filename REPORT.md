@@ -59,11 +59,64 @@ import App from './App';
 ```js
 import React from 'react';
 ```
-є обов'язковий, оскількки без нього, Babel не зможе працювати і синтаксис JSX не буде прийматися.
+є обов'язковий, оскільки без нього, Babel не зможе працювати і синтаксис JSX не буде прийматися.
 Помилка:
 ```js
 Failed to compile
 src\index.js
   Line 7:16:  'React' is not defined  no-undef
 Search for the keywords to learn more about each error.
+```
+Якщо ми створюємо елемент більше 1 строки, є обов'язковим поставити '()' і помістити все в блочний елемент <div></div>.
+# Візуалізація елементів
+На відміну від DOM-елементів, елементи React - це прості об'єкти, що не віднімають багато ресурсів. React DOM оновлює DOM, щоб він відповідав переданим React-елементам.
+## Розглянемо приклад
+```js 
+function tick() {
+  const element = (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+    </div>
+  );
+  ReactDOM.render(element, document.getElementById('root'));
+}
+
+setInterval(tick, 1000);
+```
+У цьому прикладі ReactDOM.render()викликається щосекунди за допомогою колбека setInterval().
+# Компоненти і пропси
+Компоненти дозволяють розбити інтерфейс на незалежні частини, про які легко думати окремо. Їх можна складати разом і використовувати кілька разів.
+Найпростіше оголосити React-компонент як функцію:
+```js
+function f(props) {
+  return <h1>Hi, {props.name}</h1>;
+}
+```
+Ця функція - компонент, тому що вона отримує дані в одному об'єкті ( «пропси») в якості параметра і повертає React-елемент. Ми будемо називати такі компоненти «функціональними», так як вони буквально є функціями.
+Також компоненти можна визначати як класи:
+```js
+class F extends React.Component {
+  render() {
+    return <h1>Hi, {this.props.name}</h1>;
+  }
+}
+```
+Елементи можуть описувати і наші власні компоненти:
+```JS
+const element = <Welcome name="Алиса" />;
+```
+Коли React зустрічає подібний елемент, він збирає всі JSX-атрибути і дочірні елементи в один об'єкт і передає їх нашому компоненту. Цей об'єкт називається props.
+
+Наприклад, цей компонент виведе «Some, Name» на сторінку:
+```js
+function Welcome(props) {
+  return <h1>Some, {props.name}</h1>;
+}
+
+const element = <Welcome name="Name" />;
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
 ```
