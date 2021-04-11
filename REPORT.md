@@ -56,3 +56,14 @@ import './index.css';
 import App from './App';
 ```
 як це відбувається при створенні нашого проекту - [create react app](https://uk.reactjs.org/docs/create-a-new-react-app.html).
+```js
+import React from 'react';
+```
+є обов'язковий, оскількки без нього, Babel не зможе працювати і синтаксис JSX не буде прийматися.
+Помилка:
+```js
+Failed to compile
+src\index.js
+  Line 7:16:  'React' is not defined  no-undef
+Search for the keywords to learn more about each error.
+```
