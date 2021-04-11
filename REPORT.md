@@ -67,7 +67,7 @@ src\index.js
   Line 7:16:  'React' is not defined  no-undef
 Search for the keywords to learn more about each error.
 ```
-Якщо ми створюємо елемент більше 1 строки, є обов'язковим поставити '()' і помістити все в блочний елемент <div>.
+Якщо ми створюємо елемент більше 1 строки, є обов'язковим поставити '()' і помістити все в блочний елемент типу div.
 ```js
 const elem_3 = (
   <div>
@@ -78,6 +78,7 @@ const elem_3 = (
 );
 ```
 Інакше буде помилка:
+
 ```js
 ./src/index.js
 SyntaxError: C:\Users\Bohdan\Desktop\test\src\index.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (11:4)
