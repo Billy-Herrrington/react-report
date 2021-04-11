@@ -135,3 +135,21 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+# Обробка подій
+Обробка подій в React-елементах дуже схожа на обробку подій в DOM-елементах. Але є кілька синтаксичних відмінностей:
+
+- Події в React іменуються в стилі camelCase замість нижнього регістра.
+- З JSX ви передаєте функцію як обробник події замість рядка.
+
+Наприклад, в HTML:
+```html
+<button onclick="activateLasers()">
+  Активировать лазеры
+</button>
+```
+У React:
+```js
+<button onClick={activateLasers}>
+  Активировать лазеры
+</button>
+```
