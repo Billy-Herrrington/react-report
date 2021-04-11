@@ -85,6 +85,31 @@ SyntaxError: C:\Users\Bohdan\Desktop\test\src\index.js: Adjacent JSX elements mu
 ```
 # Візуалізація елементів
 На відміну від DOM-елементів, елементи React - це прості об'єкти, що не віднімають багато ресурсів. React DOM оновлює DOM, щоб він відповідав переданим React-елементам.
+Якщо ж ми говоримо про стилі то їх можна під'єднувати за допомогою:
+```js
+import './style.css'
+```
+де, style.css лежить в тій же папці.
+або ж записувати стилі в об'єкті та передавати в атрибут style = {}. Наприклад:
+```js
+const styleUl = {
+  ul: {
+    listStyle: 'none',
+  }
+}
+const Add = () =>{
+  return (
+    <ul  style = {styleUl.ul}>
+      <li>
+        Hello
+      </li>
+    </ul>
+  )
+}
+
+ReactDOM.render(<Add></Add>, document.getElementById('root')
+);
+````
 ## Розглянемо приклад
 ```js 
 function tick() {
