@@ -153,3 +153,7 @@ ReactDOM.render(
   Активировать лазеры
 </button>
 ```
+### Так само і з атрибутами, іх ми записуємо у вигляді CamelCase:
+- className
+- autoComplete
+і так далі
