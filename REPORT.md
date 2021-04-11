@@ -24,6 +24,16 @@ JSX допускає використання будь-яких коректни
 - 2 + 2, 
 - user.firstName
 - formatName(user).
+Після компіляції кожне JSX-вираз стає звичайним викликом JavaScript-функції, результат якого - об'єкт JavaScript.
+З цього випливає, що JSX можна використовувати всередині виразів ifі циклів for, привласнювати змінним, передавати функції в якості аргументу і повертати з функції.
+```js
+function getSomeUser(id) {
+  if (id) {
+    return <h1>Hello, {id}!</h1>;
+  }
+  return <h1>We don't know who you are!</h1>;
+}
+```
 ## Бандлінг
 Більшість React-додатків збирають свої файли такими інструментами, як Webpack , Rollup або Browserify . 
 Збірка  - це процес виявлення імпортованих файлів і об'єднання їх в один «зібраний» файл (часто званий «bundle» або «бандл»). Цей бандл після підключення на веб-сторінку завантажує весь додаток за один раз.
@@ -37,3 +47,11 @@ export function add(a, b) {
   return a + b;
 }
 ```
+Кращий спосіб впровадити поділ коду в додаток - використовувати синтаксис динамічного імпорту: import().
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+```
+як це відбувається при створенні нашого проекту - [create react app](https://uk.reactjs.org/docs/create-a-new-react-app.html).
