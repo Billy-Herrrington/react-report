@@ -68,6 +68,20 @@ src\index.js
 Search for the keywords to learn more about each error.
 ```
 Якщо ми створюємо елемент більше 1 строки, є обов'язковим поставити '()' і помістити все в блочний елемент <div></div>.
+```js
+const elem_3 = (
+  <div>
+    <h3>Hello my friend!</h3>
+    <input type='text' placeholder='Type smth'></input>
+    <button>Some button</button>
+  </div>
+);
+```
+Інакше буде помилка:
+```js
+./src/index.js
+SyntaxError: C:\Users\Bohdan\Desktop\test\src\index.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (11:4)
+```
 # Візуалізація елементів
 На відміну від DOM-елементів, елементи React - це прості об'єкти, що не віднімають багато ресурсів. React DOM оновлює DOM, щоб він відповідав переданим React-елементам.
 ## Розглянемо приклад
