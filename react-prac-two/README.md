@@ -3,4 +3,4 @@
 Ми можемо добавляти певні пости, відмічати їх там продивлятися фільтр.
 В цій папці 'react-prac-two' реалізовано лише зовнішній вигляд.
 ## Було створено папку 'components' ,яка містить усі компоненти нашого додатку!
-![image](file:///C:/Users/Bohdan/Desktop/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA.PNG)
+![image](https://github.com/Devy707/react-report/blob/master/image/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA.PNG)
