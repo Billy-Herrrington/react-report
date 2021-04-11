@@ -67,7 +67,7 @@ src\index.js
   Line 7:16:  'React' is not defined  no-undef
 Search for the keywords to learn more about each error.
 ```
-Якщо ми створюємо елемент більше 1 строки, є обов'язковим поставити '()' і помістити все в блочний елемент <div></div>.
+Якщо ми створюємо елемент більше 1 строки, є обов'язковим поставити '()' і помістити все в блочний елемент <div>.
 ```js
 const elem_3 = (
   <div>
