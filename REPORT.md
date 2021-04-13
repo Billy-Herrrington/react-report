@@ -313,3 +313,74 @@ function Example() {
 }
 ```
 Синтаксис деструктуризації масивів дозволяє нам по різному називати змінні стану, які ми оголошуємо при виклику useState. Ці імена не є частиною API useState. Натомість, React припускає, що якщо ми викликаємо useState багато разів, то ви робите це в тому ж порядку під час кожного рендеру.
+# Фрагменти
+Повернення кількох елементів з компонента є поширеною практикою в React. Фрагменти дозволяють формувати список дочірніх елементів, не створюючи зайвих вузлів в DOM.
+```js
+render() {
+  return (
+    <React.Fragment>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </React.Fragment>
+  );
+}
+```
+## Ще приклад
+```js
+class Table extends React.Component {
+  render() {
+    return (
+      <table>
+        <tr>
+          <Columns />
+        </tr>
+      </table>
+    );
+  }
+}
+
+class Columns extends React.Component {
+  render() {
+    return (
+      <div>
+        <td>Привіт</td>
+        <td>Світe</td>
+      </div>
+    );
+  }
+}
+```
+### Результат
+```js
+<table>
+  <tr>
+    <div>
+      <td>Привіт</td>
+      <td>Світe</td>
+    </div>
+  </tr>
+</table>
+```
+#### Фрагменти вирішують цю проблему.
+```js
+class Columns extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <td>Привіт</td>
+        <td>Світe</td>
+      </React.Fragment>
+    );
+  }
+}
+
+------>
+
+<table>
+  <tr>
+    <td>Привіт</td>
+    <td>Світe</td>
+  </tr>
+</table>
+```
