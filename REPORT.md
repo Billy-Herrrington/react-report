@@ -160,10 +160,33 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+Компоненти можуть посилатися на інші компоненти. Це дозволяє нам використовувати ту ж саму абстракцію компонента для будь-якого рівня деталізації. Кнопка, форма, діалог, екран: в React-додатку всі ці сутності виражені компонентами.
+
+Наприклад, ми можемо створити компонент App, який показує компонент W багато разів:
+```js
+function W(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Cahal" />
+      <Welcome name="Edite" />
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
 # Обробка подій
 Обробка подій в React-елементах дуже схожа на обробку подій в DOM-елементах. Але є кілька синтаксичних відмінностей:
 
-- Події в React іменуються в стилі camelCase замість нижнього регістра.
+- Події в React іменуються в стилі camelCase(верблюжа нотація) замість нижнього регістра.
 - З JSX ви передаєте функцію як обробник події замість рядка.
 
 Наприклад, в HTML:
@@ -172,13 +195,69 @@ ReactDOM.render(
   Активировать лазеры
 </button>
 ```
+або ось такий HTML:
+```html
+ <button onclick="deleteAllUsers()">Удалить всех пользователей</button>
+```
 У React:
 ```js
 <button onClick={activateLasers}>
   Активировать лазеры
 </button>
+
+<button onClick={deleteAllUsers}>Удалить всех пользователей</button>
 ```
+У React, щоб запобігти поведінка за умовчанням Ви повинні явно викликати preventDefault().
+```js
+function DeleteUserLink() {
+    function onClick(event) {
+      event.preventDefault();
+      console.log('Пользователь был удален.');
+    }
+
+    return (
+      <a href="#" onClick={onClick}>Remove user</a>
+    );
+  }
+```
+Тут event- це синтетичне подія. React визначає такі синтетичні події відповідно до специфікації W3C.
 ### Так само і з атрибутами, іх ми записуємо у вигляді CamelCase:
 - className
 - autoComplete
 і так далі
+### PropTypes
+По мірі зростання вашого додатку, ви зможете піймати багато помилок з перевіркою типів.
+Для виконання перевірки типів пропсів ви можете присвоїти спеціальну властивість propTypes компоненту:
+```js
+import React from 'react';
+import TodoItem from './TodoItem'
+import propTypes from 'prop-types'; //Валідація
+
+const styleList = {
+    ul:{
+        listStyle: 'none',
+        color: 'black',
+        // textTransform: 'uppercase',
+    }
+}
+
+function TodoList(props){
+    return(
+        <ul style = {styleList.ul}>
+            {props.todos.map((todo,index) => {
+                return <TodoItem index={index} todo={todo} key={todo.id} onChange={props.onToggle}></TodoItem>;
+                })
+            }
+        </ul>
+        )
+}
+
+TodoList.propTypes = {
+    todos: propTypes.arrayOf(propTypes.object).isRequired,
+    onToggle: propTypes.func.isRequired,
+}
+
+export default TodoList;
+```
+PropTypes експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ви отримали вірні дані. В наведеному вище прикладі ми використовуємо propTypes.arrayOf(propTypes.object) та propTypes.func.
+#### isRequired показує, що ці дані потрібно передавати обов'язково.
