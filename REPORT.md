@@ -430,3 +430,51 @@ class Columns extends React.Component {
   </tr>
 </table>
 ```
+# Списки  React
+Ми можеМО створювати колекції елементів і включати їх у JSX за допомогою фігурних дужок {}.
+Говорячи про списки в React, то їх ми можемо створювати завдяки array.map():
+```js
+const m = [1, 2, 3, 4, 5];
+const listItems = m.map((item) =>
+  <li>{item}</li>
+);
+ReactDOM.render(
+  <ul>{listItems}</ul>,
+  document.getElementById('root')
+);
+```
+### Ще приклад
+```js
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li>{number}</li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+```
+Коли ви запустите цей код, ви отримаєте попередження, що для елементів списку має бути вказано ключ. “Ключ” - це спеціальний рядковий атрибут, який потрібно вказувати при створенні списку елементів.
+Щоб виправити проблему з невказаними ключами, призначмо нашим елементам списку атрибут key всередині numbers.map().
+```js
+///
+<li key={number.toString()}>
+///
+```
+Ключі допомагають React визначити, які елементи були змінені, додані або видалені. 
+Найкращий спосіб вибрати ключ - це використати рядок, котрий буде однозначно відрізняти елемент списку від його сусідів. 
+Наприклад в ключі ми можемо використовувати ID:
+```js
+const todoItems = todos.map((todo) =>
+  <li key={todo.id}>
+    {todo.text}
+  </li>
+);
+```
