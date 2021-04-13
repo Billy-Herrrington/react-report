@@ -110,6 +110,27 @@ const Add = () =>{
 ReactDOM.render(<Add></Add>, document.getElementById('root')
 );
 ````
+## Інлайнова стилізація React компонентів
+Якщо ви знайомі з простим HTML, то ви вже знаєте, що можна додавати ваші стилі CSS інлайново. Це майже так само, як і в React.
+Ми можемо додавати інлайновие стилі компонентам. Такі стилі записані як атрибути і передаються елементу. 
+```js
+class ToDoApp extends React.Component {
+  // ...
+  render() {
+    return (
+      <div style={{ backgroundColor: "#44014C", width: "300px", minHeight: "200px"}}>
+        <h2 style={{ padding: "10px 20px", textAlign: "center", color: "white"}}>ToDo</h2>
+        <div>
+          <Input onChange={this.handleChange} />
+          <p>{this.state.error}</p>
+          <ToDoList value={this.state.display} />
+        </div>
+      </div>
+    )
+  }
+}
+```
+
 ## Розглянемо приклад
 ```js 
 function tick() {
@@ -225,9 +246,9 @@ function DeleteUserLink() {
 - className
 - autoComplete
 і так далі
-### PropTypes
-По мірі зростання вашого додатку, ви зможете піймати багато помилок з перевіркою типів.
-Для виконання перевірки типів пропсів ви можете присвоїти спеціальну властивість propTypes компоненту:
+# PropTypes
+По мірі зростання вашого додатку, ми зможемо піймати багато помилок з перевіркою типів.
+Для виконання перевірки типів пропсів ми можемо присвоїти спеціальну властивість propTypes компоненту:
 ```js
 import React from 'react';
 import TodoItem from './TodoItem'
@@ -259,5 +280,36 @@ TodoList.propTypes = {
 
 export default TodoList;
 ```
-PropTypes експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ви отримали вірні дані. В наведеному вище прикладі ми використовуємо propTypes.arrayOf(propTypes.object) та propTypes.func.
+PropTypes експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ми отримали вірні дані. В наведеному вище прикладі ми використовуємо propTypes.arrayOf(propTypes.object) та propTypes.func.
 #### isRequired показує, що ці дані потрібно передавати обов'язково.
+# React хуки
+Хуки — це новинка в React 16.8. Вони є функціями, за допомогою яких ми можете “зачепитися” за стан та методи життєвого циклу React з функційних компонентів. Хуки не працюють всередині класів — вони дають вам можливість використовувати React без класів.
+## React useState
+```js
+import React, { useState } from 'react';
+
+function Example() {
+  // Створюємо нову змінну стану, яку назвемо "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Ви натиснули {count} разів</p>
+      <button onClick={() => setCount(count + 1)}>
+        Натисни мене
+      </button>
+    </div>
+  );
+}
+```
+У цьому прикладі, useState — це хук (визначення хуку наведенно нижче). Ми викликаємо його для того, щоб надати внутрішній стан нашому компоненту. React буде зберігати цей стан між повторними рендерами. Виклик useState повертає дві речі: поточне значення стану та функцію, яка дозволяє оновлювати цей стан.
+
+Ми можемо використовувати хук стану більше одного разу в одному компоненті:
+```js
+function Example() {
+  const [age, setAge] = useState(42);
+  const [fruit, setFruit] = useState('банан');
+  const [todos, setTodos] = useState([{ text: 'Вивчити хуки' }]);
+}
+```
+Синтаксис деструктуризації масивів дозволяє нам по різному називати змінні стану, які ми оголошуємо при виклику useState. Ці імена не є частиною API useState. Натомість, React припускає, що якщо ми викликаємо useState багато разів, то ви робите це в тому ж порядку під час кожного рендеру.
