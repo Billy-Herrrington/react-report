@@ -1,0 +1,15 @@
+.btn{
+    margin-left: 50px;
+    background-color:coral;
+    border-radius: 5px;
+    outline: none;
+    outline-offset: none;
+    border:1px solid rgb(167, 82, 51);
+    transition: background-color 1s;
+    
+}
+
+.btn:hover{
+    background-color:rgb(24, 255, 186);
+    
+}

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import App_1 from './App_1';
+import TodoList from './Todo/TodoList'
 
 const elem = <h2>Hello World!</h2>;
 const elem_1 = React.createElement('h2',null,'Hello World'); //более старый синтаксис,не желательно использовать
@@ -44,8 +45,6 @@ const Field = () =>{
   const styleField = {
     width: '500px',
     borderRadius: '5px',
-    backgroundColor
-
   }
   const holder = 'Our input'
   return <input type='text' placeholder={holder} style = {styleField}></input>
@@ -73,7 +72,15 @@ const Add = () =>{
   )
 }
 
-ReactDOM.render(<Add></Add>, document.getElementById('root')
+const Table = () =>{
+  return(
+    <div>
+      <TodoList></TodoList>
+    </div>
+  )
+}
+
+ReactDOM.render(<App></App>, document.getElementById('root')
 );
 
 
