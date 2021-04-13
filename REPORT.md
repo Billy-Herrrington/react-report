@@ -313,6 +313,51 @@ function Example() {
 }
 ```
 Синтаксис деструктуризації масивів дозволяє нам по різному називати змінні стану, які ми оголошуємо при виклику useState. Ці імена не є частиною API useState. Натомість, React припускає, що якщо ми викликаємо useState багато разів, то ви робите це в тому ж порядку під час кожного рендеру.
+## React useEffect
+Хук ефекту дозволяє вам виконувати побічні ефекти в функціональному компоненті:
+```js
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Подібно до componentDidMount та componentDidUpdate:
+  useEffect(() => {
+    // Оновлюємо заголовок документа, використовуючи API браузера
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>Ви натиснули {count} разів</p>
+      <button onClick={() => setCount(count + 1)}>
+        Натисни мене
+      </button>
+    </div>
+  );
+}
+```
+Побічними ефектами в React є завантаження даних, оформлення підписки і зміна вручну DOM в React-компонентах.
+```js
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Ви натиснули ${count} разів`;
+  });
+
+  return (
+    <div>
+      <p>Ви натиснули {count} разів</p>
+      <button onClick={() => setCount(count + 1)}>
+        Натисни мене
+      </button>
+    </div>
+  );
+}
+```
 # Фрагменти
 Повернення кількох елементів з компонента є поширеною практикою в React. Фрагменти дозволяють формувати список дочірніх елементів, не створюючи зайвих вузлів в DOM.
 ```js
