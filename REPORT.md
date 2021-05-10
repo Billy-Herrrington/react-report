@@ -478,3 +478,8 @@ const todoItems = todos.map((todo) =>
   </li>
 );
 ```
+
+## Матеріал підготував 
+студент групи ІВ-93 Стеценко Богдан
+
+><a href="https://github.com/Devy707/react-report" target="_blank">https://github.com/Devy707/react-report</a>
